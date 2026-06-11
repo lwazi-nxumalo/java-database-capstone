@@ -1,0 +1,133 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    font-family: Arial, sans-serif;
+}
+
+.main-content {
+    flex: 1;
+    padding: 2rem;
+}
+
+.filter-wrapper {
+    display: flex;
+    gap: 1rem;
+    margin: 1rem 0;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+#todayButton {
+    background-color: #015c5d;
+    color: white;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.95rem;
+}
+
+#todayButton:hover {
+    background-color: #017d7e;
+}
+
+#datePicker {
+    padding: 0.6rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 0.95rem;
+}
+
+#patientTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+#patientTable thead {
+    background-color: rgba(1, 92, 93, 0.85);
+    color: white;
+}
+
+#patientTable thead th {
+    padding: 0.8rem 1rem;
+    text-align: left;
+    font-size: 0.95rem;
+}
+
+#patientTable tbody tr:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+
+#patientTable tbody tr:nth-child(even) {
+    background-color: #e8f5f5;
+}
+
+#patientTable tbody tr:hover {
+    background-color: #cce8e8;
+}
+
+#patientTable tbody td {
+    padding: 0.8rem 1rem;
+    font-size: 0.9rem;
+    color: #333;
+}
+
+.prescription-btn {
+    background-color: #015c5d;
+    color: white;
+    border: none;
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: filter 0.2s, transform 0.2s;
+}
+
+.prescription-btn:hover {
+    filter: brightness(1.2);
+    transform: scale(1.05);
+}
+
+.noPatientRecord {
+    text-align: center;
+    font-style: italic;
+    color: #888;
+    padding: 1.5rem;
+}
+
+@media (max-width: 768px) {
+    #patientTable thead {
+        display: none;
+    }
+
+    #patientTable tbody tr {
+        display: block;
+        margin-bottom: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        padding: 0.8rem;
+    }
+
+    #patientTable tbody td {
+        display: block;
+        text-align: right;
+        padding: 0.4rem 0.8rem;
+    }
+
+    #patientTable tbody td::before {
+        content: attr(data-label);
+        float: left;
+        font-weight: bold;
+        color: #015c5d;
+    }
+}
