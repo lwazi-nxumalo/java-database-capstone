@@ -13,7 +13,7 @@ public class DashboardController {
     @Autowired
     private Service service;
 
-    @GetMapping("/adminDashboard/{token}")
+    @GetMapping("/adminDashboard/{token:.+}")
     public String adminDashboard(@PathVariable String token) {
         if (service.validateToken(token, "admin").getStatusCode() == HttpStatus.OK) {
             return "admin/adminDashboard";
@@ -21,7 +21,7 @@ public class DashboardController {
         return "redirect:http://localhost:8080";
     }
 
-    @GetMapping("/doctorDashboard/{token}")
+    @GetMapping("/doctorDashboard/{token:.+}")
     public String doctorDashboard(@PathVariable String token) {
         if (service.validateToken(token, "doctor").getStatusCode() == HttpStatus.OK) {
             return "doctor/doctorDashboard";

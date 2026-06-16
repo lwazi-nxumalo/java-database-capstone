@@ -64,3 +64,5 @@ export function openModal(type) {
         modal.style.display = "none";
     });
 }
+
+window.openModal = openModal;

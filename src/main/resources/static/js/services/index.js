@@ -26,7 +26,7 @@ window.adminLoginHandler = async function () {
     const admin = { username, password };
 
     try {
-        const response = await fetch(ADMIN_API + '/login', {
+        const response = await fetch(ADMIN_API, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(admin)
@@ -35,7 +35,7 @@ window.adminLoginHandler = async function () {
         if (response.ok) {
             const data = await response.json();
             localStorage.setItem('token', data.token);
-            selectRole('admin');
+            selectRole('admin', data.token);
         } else {
             alert('Invalid credentials!');
         }
@@ -47,7 +47,7 @@ window.adminLoginHandler = async function () {
 window.doctorLoginHandler = async function () {
     const email = document.getElementById('doctorEmail').value;
     const password = document.getElementById('doctorPassword').value;
-    const doctor = { email, password };
+    const doctor = { identifier: email, password: password };
 
     try {
         const response = await fetch(DOCTOR_API, {
@@ -59,7 +59,7 @@ window.doctorLoginHandler = async function () {
         if (response.ok) {
             const data = await response.json();
             localStorage.setItem('token', data.token);
-            selectRole('doctor');
+            selectRole('doctor', data.token);
         } else {
             alert('Invalid credentials!');
         }

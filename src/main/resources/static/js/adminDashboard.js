@@ -19,12 +19,14 @@ function renderDoctorCards(doctors) {
     const contentDiv = document.getElementById("content");
     contentDiv.innerHTML = "";
 
-    if (!doctors || doctors.length === 0) {
+    const list = Array.isArray(doctors) ? doctors : (doctors.doctors || []);
+
+    if (!list || list.length === 0) {
         contentDiv.innerHTML = "<p>No doctors found.</p>";
         return;
     }
 
-    doctors.forEach(doctor => {
+    list.forEach(doctor => {
         const card = createDoctorCard(doctor);
         contentDiv.appendChild(card);
     });
