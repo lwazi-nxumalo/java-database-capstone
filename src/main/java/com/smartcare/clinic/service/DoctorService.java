@@ -8,6 +8,7 @@ import com.smartcare.clinic.repository.DoctorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -28,6 +29,9 @@ public class DoctorService {
 
     @Autowired
     private TokenService tokenService;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     public List<String> getDoctorAvailability(Long doctorId, LocalDate date) {
         Optional<Doctor> doctorOpt = doctorRepository.findById(doctorId);
@@ -57,6 +61,7 @@ public class DoctorService {
     public int saveDoctor(Doctor doctor) {
         try {
             if (doctorRepository.findByEmail(doctor.getEmail()) != null) return -1;
+            doctor.setPassword(passwordEncoder.encode(doctor.getPassword()));
             doctorRepository.save(doctor);
             return 1;
         } catch (Exception e) {
@@ -66,7 +71,13 @@ public class DoctorService {
 
     public int updateDoctor(Doctor doctor) {
         try {
-            if (doctorRepository.findById(doctor.getId()).isEmpty()) return -1;
+            Optional<Doctor> existing = doctorRepository.findById(doctor.getId());
+            if (existing.isEmpty()) return -1;
+            if (doctor.getPassword() != null && !doctor.getPassword().isEmpty()) {
+                doctor.setPassword(passwordEncoder.encode(doctor.getPassword()));
+            } else {
+                doctor.setPassword(existing.get().getPassword());
+            }
             doctorRepository.save(doctor);
             return 1;
         } catch (Exception e) {
@@ -93,7 +104,7 @@ public class DoctorService {
         Map<String, String> response = new HashMap<>();
         try {
             Doctor doctor = doctorRepository.findByEmail(login.getIdentifier());
-            if (doctor == null || !doctor.getPassword().equals(login.getPassword())) {
+            if (doctor == null || !passwordEncoder.matches(login.getPassword(), doctor.getPassword())) {
                 response.put("message", "Invalid credentials");
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
             }
@@ -162,7 +173,6 @@ public class DoctorService {
                     int hour = Integer.parseInt(slot.split(":")[0]);
                     if (amOrPm.equalsIgnoreCase("AM")) return hour < 12;
                     if (amOrPm.equalsIgnoreCase("PM")) return hour >= 12;
-                    // support direct time slot like "09:00-10:00"
                     return slot.equals(amOrPm);
                 } catch (Exception e) {
                     return false;

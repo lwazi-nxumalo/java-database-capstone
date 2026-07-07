@@ -10,6 +10,7 @@ import com.smartcare.clinic.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.time.LocalDate;
 import java.util.HashMap;
@@ -37,6 +38,9 @@ public class Service {
     @Autowired
     private PatientService patientService;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     public ResponseEntity<Map<String, String>> validateToken(String token, String user) {
         Map<String, String> response = new HashMap<>();
         if (!tokenService.validateToken(token, user)) {
@@ -50,7 +54,7 @@ public class Service {
         Map<String, String> response = new HashMap<>();
         try {
             Admin admin = adminRepository.findByUsername(receivedAdmin.getUsername());
-            if (admin == null || !admin.getPassword().equals(receivedAdmin.getPassword())) {
+            if (admin == null || !passwordEncoder.matches(receivedAdmin.getPassword(), admin.getPassword())) {
                 response.put("message", "Invalid credentials");
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
             }
@@ -112,7 +116,7 @@ public class Service {
         Map<String, String> response = new HashMap<>();
         try {
             Patient patient = patientRepository.findByEmail(login.getIdentifier());
-            if (patient == null || !patient.getPassword().equals(login.getPassword())) {
+            if (patient == null || !passwordEncoder.matches(login.getPassword(), patient.getPassword())) {
                 response.put("message", "Invalid credentials");
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
             }

@@ -8,6 +8,7 @@ import com.smartcare.clinic.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.HashMap;
 import java.util.List;
@@ -26,8 +27,12 @@ public class PatientService {
     @Autowired
     private TokenService tokenService;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     public int createPatient(Patient patient) {
         try {
+            patient.setPassword(passwordEncoder.encode(patient.getPassword()));
             patientRepository.save(patient);
             return 1;
         } catch (Exception e) {
