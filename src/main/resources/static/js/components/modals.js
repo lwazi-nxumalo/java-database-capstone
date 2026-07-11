@@ -6,22 +6,24 @@ export function openModal(type) {
 
     modal.style.display = "flex";
 
+    const closeBtn = '<button id="closeModal" class="close">&times;</button>';
+
     if (type === "adminLogin") {
-        modalBody.innerHTML = `
+        modalBody.innerHTML = closeBtn + `
             <h2>Admin Login</h2>
             <input type="text" id="adminUsername" class="input-field" placeholder="Username" />
             <input type="password" id="adminPassword" class="input-field" placeholder="Password" />
             <button class="button" onclick="adminLoginHandler()">Login</button>
         `;
     } else if (type === "doctorLogin") {
-        modalBody.innerHTML = `
+        modalBody.innerHTML = closeBtn + `
             <h2>Doctor Login</h2>
             <input type="email" id="doctorEmail" class="input-field" placeholder="Email" />
             <input type="password" id="doctorPassword" class="input-field" placeholder="Password" />
             <button class="button" onclick="doctorLoginHandler()">Login</button>
         `;
     } else if (type === "addDoctor") {
-        modalBody.innerHTML = `
+        modalBody.innerHTML = closeBtn + `
             <h2>Add Doctor</h2>
             <input type="text" id="doctorName" class="input-field" placeholder="Full Name" />
             <input type="text" id="doctorSpecialty" class="input-field" placeholder="Specialty" />
@@ -42,14 +44,14 @@ export function openModal(type) {
             <button class="button" onclick="adminAddDoctor()">Add Doctor</button>
         `;
     } else if (type === "patientLogin") {
-        modalBody.innerHTML = `
+        modalBody.innerHTML = closeBtn + `
             <h2>Patient Login</h2>
             <input type="email" id="patientEmailInput" class="input-field" placeholder="Email" />
             <input type="password" id="patientPasswordInput" class="input-field" placeholder="Password" />
             <button class="button" onclick="loginPatient()">Login</button>
         `;
     } else if (type === "patientSignup") {
-        modalBody.innerHTML = `
+        modalBody.innerHTML = closeBtn + `
             <h2>Patient Signup</h2>
             <input type="text" id="signupName" class="input-field" placeholder="Full Name" />
             <input type="email" id="signupEmail" class="input-field" placeholder="Email" />
@@ -60,9 +62,17 @@ export function openModal(type) {
         `;
     }
 
-    document.getElementById("closeModal").addEventListener("click", () => {
+    document.getElementById("closeModal").onclick = () => {
         modal.style.display = "none";
-    });
+        modalBody.innerHTML = "";
+    };
+
+    window.onclick = (e) => {
+        if (e.target === modal) {
+            modal.style.display = "none";
+            modalBody.innerHTML = "";
+        }
+    };
 }
 
 window.openModal = openModal;
