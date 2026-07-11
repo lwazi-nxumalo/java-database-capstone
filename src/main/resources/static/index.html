@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Smart Clinic</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iMpilo Med</title>
     <link rel="icon" href="./assets/images/logo/logo.png" />
     <link rel="stylesheet" href="./assets/css/index.css">
     <link rel="stylesheet" href="./assets/css/style.css">
@@ -16,11 +17,32 @@
         <div class="wrapper">
             <div id="header"></div>
             <main class="main-content">
-                <h2>Select Your Role</h2>
-                <div class="role-buttons">
-                    <button id="adminLogin" class="dashboard-btn">Admin</button>
-                    <button id="doctorLogin" class="dashboard-btn">Doctor</button>
-                    <button id="patientBtn" class="dashboard-btn" onclick="selectRole('patient')">Patient</button>
+                <div class="hero">
+                    <div class="hero-text">
+                        <h1>iMpilo Med</h1>
+                        <p class="tagline">Healthcare near you</p>
+                        <p class="hero-desc">Access quality healthcare services from anywhere. Connect with doctors, book appointments, and manage your health journey.</p>
+                    </div>
+                    <div class="role-section">
+                        <p class="role-label">Select your role to continue</p>
+                        <div class="role-buttons">
+                            <button id="adminLogin" class="dashboard-btn">
+                                <span class="btn-icon">⚕</span>
+                                <span class="btn-label">Admin</span>
+                                <span class="btn-desc">Manage the clinic</span>
+                            </button>
+                            <button id="doctorLogin" class="dashboard-btn">
+                                <span class="btn-icon">👨‍⚕️</span>
+                                <span class="btn-label">Doctor</span>
+                                <span class="btn-desc">View appointments</span>
+                            </button>
+                            <button id="patientBtn" class="dashboard-btn" onclick="selectRole('patient')">
+                                <span class="btn-icon">🏥</span>
+                                <span class="btn-label">Patient</span>
+                                <span class="btn-desc">Book a consultation</span>
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </main>
             <div id="footer"></div>

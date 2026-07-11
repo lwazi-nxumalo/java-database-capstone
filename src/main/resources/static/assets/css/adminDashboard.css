@@ -162,16 +162,65 @@ html, body {
 }
 
 @media (max-width: 768px) {
-    #content {
-        justify-content: center;
+    .main-content {
+        padding: 1rem;
     }
 
-    .doctor-card {
-        width: 100%;
-        max-width: 400px;
+    #searchBar,
+    .searchBar {
+        max-width: 100%;
     }
 
     .filter-wrapper {
         flex-direction: column;
+    }
+
+    .select-dropdown {
+        width: 100%;
+    }
+
+    #content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .doctor-card {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .card-actions button {
+        padding: 0.7rem;
+        font-size: 1rem;
+    }
+
+    #modal-body {
+        width: 95%;
+        padding: 1rem;
+    }
+
+    .checkbox-group {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.4rem;
+    }
+
+    .adminBtn {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .doctor-info h3 {
+        font-size: 1rem;
+    }
+
+    .doctor-info p {
+        font-size: 0.85rem;
+    }
+
+    .checkbox-group {
+        grid-template-columns: 1fr;
     }
 }

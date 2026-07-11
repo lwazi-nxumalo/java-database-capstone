@@ -20,8 +20,8 @@ function renderHeader() {
     let headerContent = `
         <div class="header">
             <div class="logo">
-                <img src="/assets/images/logo/logo.png" alt="Smart Clinic Logo" />
-                <span>Smart Clinic</span>
+                <img src="/assets/images/logo/logo.png" alt="iMpilo Med Logo" />
+                <span>iMpilo Med</span>
             </div>
             <nav class="nav">
     `;

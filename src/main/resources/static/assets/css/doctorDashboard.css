@@ -106,28 +106,58 @@ html, body {
 }
 
 @media (max-width: 768px) {
-    #patientTable thead {
-        display: none;
+    .main-content {
+        padding: 1rem;
     }
 
-    #patientTable tbody tr {
+    #searchBar {
+        width: 100%;
+    }
+
+    .filter-wrapper {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    #todayButton {
+        width: 100%;
+    }
+
+    #datePicker {
+        width: 100%;
+    }
+
+    #patientTable {
         display: block;
-        margin-bottom: 1rem;
-        border: 1px solid #ccc;
-        border-radius: 8px;
-        padding: 0.8rem;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    #patientTable thead th {
+        font-size: 0.85rem;
+        padding: 0.6rem 0.8rem;
     }
 
     #patientTable tbody td {
-        display: block;
-        text-align: right;
-        padding: 0.4rem 0.8rem;
+        font-size: 0.85rem;
+        padding: 0.6rem 0.8rem;
     }
 
-    #patientTable tbody td::before {
-        content: attr(data-label);
-        float: left;
-        font-weight: bold;
-        color: #015c5d;
+    .prescription-btn {
+        font-size: 0.8rem;
+        padding: 0.3rem 0.6rem;
+    }
+}
+
+@media (max-width: 480px) {
+    #patientTable thead th,
+    #patientTable tbody td {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.6rem;
+    }
+
+    .noPatientRecord {
+        font-size: 0.9rem;
+        padding: 1rem;
     }
 }

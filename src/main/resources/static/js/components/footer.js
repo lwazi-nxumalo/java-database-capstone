@@ -3,7 +3,7 @@ function renderFooter() {
     footer.innerHTML = `
         <footer class="footer">
             <div class="footer-brand">
-                <p>© Copyright 2025 Smart Clinic. All rights reserved.</p>
+                <p>© Copyright 2025 iMpilo Med. All rights reserved.</p>
             </div>
             <div class="footer-links">
                 <div class="footer-column">

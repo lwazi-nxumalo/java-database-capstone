@@ -6,50 +6,111 @@
 
 html, body {
     height: 100%;
-    font-family: 'Roboto', Arial, sans-serif;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 .main-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     flex: 1;
-    background-image: url('../images/defineRole/index.png');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #f0f9f7 0%, #e8f5f0 50%, #f5f9ff 100%);
+    padding: 2rem;
 }
 
-.main-content h2 {
-    font-size: 2rem;
-    font-weight: bold;
+.hero {
+    max-width: 900px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+    text-align: center;
+}
+
+.hero-text h1 {
+    font-size: 3rem;
+    font-weight: 700;
     color: #015c5d;
-    font-family: 'Roboto', Arial, sans-serif;
-    margin-bottom: 2rem;
+    letter-spacing: -0.5px;
+    margin-bottom: 0.5rem;
+}
+
+.tagline {
+    font-size: 1.2rem;
+    color: #017d7e;
+    font-weight: 400;
+    margin-bottom: 1rem;
+}
+
+.hero-desc {
+    font-size: 1rem;
+    color: #555;
+    max-width: 560px;
+    margin: 0 auto;
+    line-height: 1.7;
+}
+
+.role-section {
+    width: 100%;
+}
+
+.role-label {
+    font-size: 0.9rem;
+    color: #888;
+    margin-bottom: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .role-buttons {
     display: flex;
     gap: 1.5rem;
-    flex-wrap: wrap;
     justify-content: center;
+    flex-wrap: wrap;
 }
 
 .dashboard-btn {
-    background-color: #015c5d;
-    color: white;
-    border: none;
-    padding: 1rem 2.5rem;
-    border-radius: 8px;
-    font-size: 1.1rem;
+    background: white;
+    border: 1.5px solid #e0f0ee;
+    border-radius: 12px;
+    padding: 1.5rem 2rem;
     cursor: pointer;
-    transition: background-color 0.2s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    width: 180px;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 8px rgba(1, 92, 93, 0.08);
 }
 
 .dashboard-btn:hover {
-    background-color: #017d7e;
+    border-color: #015c5d;
+    box-shadow: 0 4px 16px rgba(1, 92, 93, 0.15);
+    transform: translateY(-2px);
+}
+
+.btn-icon {
+    font-size: 2rem;
+    margin-bottom: 0.3rem;
+}
+
+.btn-label {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #015c5d;
+}
+
+.btn-desc {
+    font-size: 0.8rem;
+    color: #888;
 }
 
 .modal {
@@ -59,7 +120,7 @@ html, body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.5);
+    background: rgba(0,0,0,0.4);
     justify-content: center;
     align-items: center;
     z-index: 1000;
@@ -68,14 +129,15 @@ html, body {
 #modal-body {
     background: white;
     padding: 2rem;
-    border-radius: 8px;
+    border-radius: 12px;
     min-width: 320px;
-    max-width: 480px;
+    max-width: 420px;
     width: 90%;
     display: flex;
     flex-direction: column;
     gap: 0.8rem;
     position: relative;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.12);
 }
 
 #modal-body h2 {
@@ -85,26 +147,42 @@ html, body {
 }
 
 .close {
-    position: absolute;
-    top: 0.8rem;
-    right: 1rem;
+    display: block;
+    margin-left: auto;
+    margin-bottom: 0.5rem;
+    background: none;
+    border: none;
     font-size: 1.5rem;
     cursor: pointer;
-    color: #333;
+    color: #888;
+    line-height: 1;
 }
 
 .close:hover {
     color: #015c5d;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 600px) {
+    .hero-text h1 {
+        font-size: 2rem;
+    }
+
     .role-buttons {
         flex-direction: column;
         align-items: center;
     }
 
     .dashboard-btn {
-        width: 200px;
-        text-align: center;
+        width: 100%;
+        max-width: 300px;
+        flex-direction: row;
+        justify-content: flex-start;
+        padding: 1rem 1.5rem;
+        gap: 1rem;
+    }
+
+    .btn-icon {
+        font-size: 1.5rem;
+        margin-bottom: 0;
     }
 }
