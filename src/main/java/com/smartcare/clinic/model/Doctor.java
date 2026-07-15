@@ -31,7 +31,7 @@ public class Doctor {
     @Pattern(regexp = "\\d{10}")
     private String phone;
     
-    @Column(nullable = false, columnDefinition = "TINYINT(1) DEFAULT 1")
+    @Column(nullable = false, columnDefinition = "boolean DEFAULT true")
     private boolean available = true;
 
     @ElementCollection
