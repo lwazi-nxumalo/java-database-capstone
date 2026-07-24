@@ -48,7 +48,7 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.POST, "/api/doctor/login").permitAll()
                 .requestMatchers(HttpMethod.POST, "/api/patient").permitAll()
                 .requestMatchers(HttpMethod.POST, "/api/patient/login").permitAll()
-                .requestMatchers(HttpMethod.GET, "/api/doctor").permitAll()
+                .requestMatchers(HttpMethod.GET, "/api/doctor", "/api/doctor/filter/**").permitAll()
 
                 // Admin only
                 .requestMatchers(HttpMethod.POST, "/api/doctor/**").hasRole("ADMIN")
